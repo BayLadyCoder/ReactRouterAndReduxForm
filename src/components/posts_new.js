@@ -16,9 +16,22 @@ class PostsNew extends Component {
     );
   }
 
+onSubmit(values) {
+  // this === component
+  // when we handle with this.onSubmit.bind(this) in the callback function
+  console.log(values);
+  // return object that contains values from the inputs
+}
+
   render() {
+
+    const { handleSubmit } = this.props;
+    // pull off handleSubmit function
+    // from additional properties that being passed to component
+    // from Redux-Form when we use reduxForm to connect with PostsNew (at export)
+
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
           label="Title"
           name="title"
