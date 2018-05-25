@@ -11,6 +11,7 @@ class PostsNew extends Component {
         type="text"
           {...field.input}
         />
+        {field.meta.error}
       </div>
     );
   }
@@ -45,9 +46,15 @@ function validate(values) {
   //  validate the inputs from 'values'
   if(!values.title) {
     errors.title = "Enter a title";
+    // title in errors.title above must be the same with
+    // Field's props name. (For example, name="title")
+    // in order to display the right name in {field.meta.error} in renderField
   }
   if(!values.categories) {
     errors.categories = "Enter some categories";
+    // categories in errors.categories must be the same with
+    // Field's props name. (For example, name="categories")
+    // in order to display the right name in {field.meta.error} in renderField
   }
   if(!values.content) {
     errors.content = "Enter some content please";
