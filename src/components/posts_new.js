@@ -33,7 +33,14 @@ onSubmit(values) {
   // when we handle with this.onSubmit.bind(this) in the callback function
   console.log(values);
   // return object that contains values from the inputs
-  this.props.createPost(values);
+
+  this.props.createPost(values, () => {
+    this.props.history.push('/');
+  });
+  // added a callback function this.props.history.push('/')
+  // this function will link back to the route we pass in the argument 
+  // Callback function only runs
+  // when createPost successfully posted on the server
 }
 
   render() {
