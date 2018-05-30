@@ -11,12 +11,22 @@ class PostsShow extends Component {
   }
 
   render() {
+
+    const { post } = this.props;
+
+    //check if post is being fetched successfully
+    if (!post) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div>
-        Posts Show!
+        <h3>{post.title}</h3>
+        <h6>Categories: {post.categories}</h6>
+        <p>{post.content}</p>
       </div>
     );
-  };
+  }
 }
 
 // in mapStateToProps, the first argument must be the application newState
@@ -24,9 +34,9 @@ class PostsShow extends Component {
 // ownProps is the props object that is going to specifically this component(in this case is PostsShow)
 // ownProps is like this.props
 function mapStateToProps({ posts }, ownProps) {
-  return { posts: posts[ownProps.match.params.id] };
+  return { post: posts[ownProps.match.params.id] };
 
 }
 
 
-export default connect(null, { fetchPost })(PostsShow);
+export default connect(mapStateToProps, { fetchPost })(PostsShow);
