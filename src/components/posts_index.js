@@ -15,7 +15,9 @@ class PostsIndex extends Component {
       //_.map is to map an object. just like JS .map to map an array
       return (
         <li className="list-group-item" key={post.id}>
-          {post.title}
+          <Link to={`/posts/${post.id}`}>
+            {post.title}
+          </Link>
         </li>
       );
     });
